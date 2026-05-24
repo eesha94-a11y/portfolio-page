@@ -1,0 +1,557 @@
+/* ==========================================================================
+   1. GLOBAL RESET & BASE STYLES
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0b132b; 
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 40px; 
+}
+
+/* Page Spacing Area */
+.main-content {
+  flex: 1;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+
+/* Common Header style used across sub-pages */
+.page-header {
+  margin-bottom: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  color: #4ea8de;
+  margin-bottom: 10px;
+}
+
+.page-header p {
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   2. NAVBAR STYLING
+   ========================================================================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #1c2541;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+}
+
+.nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #4ea8de;
+}
+
+/* ==========================================================================
+   3. HOME PAGE & BIO CARD
+   ========================================================================== */
+.home-container {
+  width: 100%;
+  max-width: 800px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.hero-subtitle {
+  color: #94a3b8;
+  font-size: 1.2rem;
+}
+
+.bio-card {
+  background-color: #1c2541;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4ea8de;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #cbd5e1;
+}
+
+@media (max-width: 768px) {
+  .bio-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+}
+
+/* ==========================================================================
+   4. EDUCATION TIMELINE (STRAY MIDDLE LINE DESTROYED)
+   ========================================================================== */
+.education-page {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.timeline {
+  position: relative;
+  border-left: 3px solid #1e293b; /* Keeps ONLY the clean side line */
+  padding-left: 35px;             
+  margin: 0 auto;
+  max-width: 700px; 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;        
+}
+
+/* CRITICAL FIXES: Explicitly target and turn off any accidental ghost timeline lines */
+.timeline::after,
+.timeline::before,
+.timeline-item::after,
+.timeline-item::before,
+.timeline-content::after,
+.timeline-content::before {
+  display: none !important;
+  content: none !important;
+}
+
+.timeline-item {
+  position: relative;
+  width: 100%;
+}
+
+/* Keeps your matching blue timeline tracking dots on the side line */
+.timeline-dot {
+  display: block;
+  position: absolute;
+  left: -46.5px; 
+  top: 24px;     
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #4ea8de;
+  border: 4px solid #0b132b;
+  box-shadow: 0 0 10px rgba(78, 168, 222, 0.5);
+  z-index: 2;
+}
+
+.timeline-content {
+  background-color: #1c2541;
+  border: 1px solid #1e293b;
+  border-radius: 16px; 
+  padding: 30px;        
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.timeline-content:hover {
+  transform: translateX(5px); 
+  border-color: #4ea8de;
+}
+
+.timeline-date {
+  display: inline-block;
+  background-color: #0b132b;
+  color: #4ea8de;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  border: 1px solid #1e293b;
+}
+
+.timeline-content h3 {
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.timeline-content h4 {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.timeline-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+/* ==========================================================================
+   5. SKILLS PAGE
+   ========================================================================== */
+.skills-page {
+  width: 100%;
+  max-width: 800px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.skills-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.skill-category-card {
+  background-color: #1c2541;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.skill-category-card h3 {
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #0b132b;
+  padding-bottom: 8px;
+}
+
+.skills-badge-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-badge {
+  background-color: #0b132b;
+  color: #cbd5e1;
+  border: 1px solid #1e293b;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.skill-badge:hover {
+  border-color: #4ea8de;
+  color: #4ea8de;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   6. WEATHER HUB PAGE
+   ========================================================================== */
+.weather-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.weather-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.weather-header h2 {
+  font-size: 2.5rem;
+  color: #4ea8de;
+  margin-bottom: 10px;
+}
+
+.weather-header p {
+  color: #94a3b8;
+  max-width: 500px;
+}
+
+.weather-search-bar {
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.weather-search-bar input {
+  flex: 1;
+  padding: 14px 20px;
+  border-radius: 8px;
+  background-color: #1c2541;
+  border: 1px solid #1e293b;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.weather-search-bar input:focus {
+  border-color: #4ea8de;
+}
+
+.weather-search-bar button {
+  padding: 0 24px;
+  border-radius: 8px;
+  background-color: #4ea8de;
+  color: #0b132b;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.25s;
+}
+
+.weather-search-bar button:hover {
+  background-color: #3a97cf;
+}
+
+.weather-card {
+  background-color: #1c2541;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.weather-main-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #0b132b;
+  padding-bottom: 25px;
+  margin-bottom: 20px;
+}
+
+.weather-big-icon {
+  font-size: 3.5rem;
+}
+
+.weather-city {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.weather-condition {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+.weather-temp {
+  font-size: 3.2rem;
+  color: #4ea8de;
+  font-weight: 700;
+}
+
+.weather-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.weather-detail-item {
+  background-color: #0b132b;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.detail-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   7. CONTACT PAGE & ECOSYSTEM CARDS
+   ========================================================================== */
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-header h2 {
+  font-size: 2.5rem;
+  color: #4ea8de;
+  margin-bottom: 12px;
+}
+
+.contact-header p {
+  color: #94a3b8;
+  max-width: 500px;
+}
+
+.social-links-card {
+  background-color: #1c2541;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 30px;
+  width: 100%;
+  max-width: 550px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.social-links-card h3 {
+  margin-bottom: 6px;
+}
+
+.card-subtitle {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+}
+
+.links-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.social-link-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  background-color: #0b132b;
+  border: 1px solid transparent;
+  transition: all 0.25s ease-in-out;
+}
+
+.social-link-item .icon {
+  font-size: 1.6rem;
+}
+
+.link-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.platform {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.handle {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.social-link-item:hover {
+  transform: translateY(-2px);
+  background-color: #131c35;
+}
+
+.social-link-item.instagram:hover {
+  border-color: #e1306c;
+}
+
+.social-link-item.github:hover {
+  border-color: #4ea8de;
+}
+
+/* ==========================================================================
+   8. GLOBAL FOOTER
+   ========================================================================== */
+.footer {
+  background-color: transparent; 
+  text-align: center;
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  width: 100%;
+  margin-top: auto; 
+}
+
+/* ==========================================================================
+   9. GLOBAL KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
