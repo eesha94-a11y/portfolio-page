@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>&copy; {new Date().getFullYear()} Eesha . Built with React & Pure CSS. All Rights Reserved.</p>
+      <p> © 2026 My Portfolio | Created By Eesha.</p>
     </footer>
   );
 };
